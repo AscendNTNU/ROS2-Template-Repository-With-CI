@@ -31,7 +31,7 @@ jobs:
                 "mixin": ["coverage-gcc", "coverage-pytest"]
               },
               "test": {
-                "mixin": ["coverage-gcc", "coverage-pytest"]
+                "mixin": ["coverage-pytest"]
               }
             }
       - name: Upload logs
