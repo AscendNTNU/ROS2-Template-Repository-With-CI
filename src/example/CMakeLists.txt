@@ -53,13 +53,4 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 
 endif()
-
-ADD_SUBDIRECTORY (gtest-1.6.0)
-enable_testing()
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-
-add_executable( runUnitTests test_1.cpp )
-target_link_libraries( runUnitTests gtest gtest_main)
-add_test( runUnitTests runUnitTests )
-
 ament_package()
