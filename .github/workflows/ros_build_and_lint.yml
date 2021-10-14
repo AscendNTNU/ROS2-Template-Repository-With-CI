@@ -40,6 +40,7 @@ jobs:
           name: colcon-logs
           path: ros_ws/log
         if: always()
+
   unit_test:
     runs-on: ubuntu-latest
     steps:
@@ -53,4 +54,4 @@ jobs:
           python -m pip install --upgrade pip
           pip freeze > requirements.txt
       - name: Run tests with pytest
-        run: pytest 
+        run: python3 -m pytest 
