@@ -19,14 +19,6 @@ jobs:
         uses: ros-tooling/setup-ros@0.2.1 
         with:
           required-ros-distributions: foxy
-        
-      - name: Dowmload Google Test Library
-        run: sudo apt-get install libgtest-dev
-             sudo apt-get install cmake
-             cd /usr/src/gtest
-             sudo cmake CMakeLists.txt
-             sudo make
-             sudo cp *.a /usr/lib
 
       - name: ROS 2 Lint and Test Action
         uses: ros-tooling/action-ros-ci@0.2.3
@@ -41,7 +33,7 @@ jobs:
           path: ros_ws/log
         if: always()
 
-  unit_test:
+  unit_test_python:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -55,3 +47,16 @@ jobs:
           pip freeze > requirements.txt
       - name: Run tests with pytest
         run: python3 -m pytest 
+
+  unit_test_cpp:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: install cppunit
+        run: sudo apt install -y libcppunit-dev
+      - name: configure
+        run: ./configure
+      - name: make
+        run: make
+      - name: make test
+        run: make test
