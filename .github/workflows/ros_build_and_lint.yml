@@ -56,7 +56,7 @@ jobs:
       - name: install cppunit
         run: sudo apt install -y libcppunit-dev
       - name: autoconf
-        run: autoconf
+        run: autoconf --install
       - name: configure
         run: ./configure
       - name: make
