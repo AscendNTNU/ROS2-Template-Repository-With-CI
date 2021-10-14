@@ -25,7 +25,15 @@ jobs:
         with: 
           target-ros2-distro: foxy
           #skip-tests: true
-
+          colcon-defaults: |
+            {
+              "build": {
+                "mixin": ["coverage-gcc", "coverage-pytest"]
+              },
+              "test": {
+                "mixin": ["coverage-gcc", "coverage-pytest"]
+              }
+            }
       - name: Upload logs
         uses: actions/upload-artifact@v1
         with:
@@ -48,12 +56,3 @@ jobs:
           pip install pytest
       - name: Run tests with pytest
         run: python3 -m pytest 
-
-  unit_test_cpp:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: install cppunit
-        run: sudo apt install -y libcppunit-dev
-      - name: configure
-        run: autoreconf --install && ./configure && make && make install && make test
